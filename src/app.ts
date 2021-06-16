@@ -1,8 +1,12 @@
 import express, { Request, Response, NextFunction } from "express";
 
-const port = 3000;
+import { getEnv } from './utils';
+
 
 export const server = async () => {
+  
+  const port = getEnv().PORT;
+
   const app = express();
 
   app.use(express.json());
