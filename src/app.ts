@@ -1,13 +1,11 @@
-import express, { Request, Response, NextFunction } from 'express';
-import { json } from 'body-parser';
-
-import todoRoutes from './routes/todos';
+import express, { Request, Response, NextFunction } from "express";
+import todoRoutes from "./routes/todos";
 
 const app = express();
 
-app.use(json());
+app.use(express.json());
 
-app.use('/todos', todoRoutes);
+app.use("/todos", todoRoutes);
 
 // Error Handling Middleware Function
 app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
