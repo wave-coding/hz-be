@@ -5,12 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon dist/app.js"
+    "start": "ts-node-dev --respawn --debounce 100  --transpile-only -r tsconfig-paths/register ./src/index.ts"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "ts-node-dev": "^1.1.6",
+    "tsconfig-paths": "^3.9.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.12",
