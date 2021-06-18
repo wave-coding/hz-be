@@ -1,11 +1,11 @@
 import express, { Request, Response, NextFunction } from "express";
 
-import { getEnv } from './utils';
+import { env } from './utils';
 
 
 export const server = async () => {
-  
-  const port = getEnv().PORT;
+
+  const port = env.PORT;
 
   const app = express();
 

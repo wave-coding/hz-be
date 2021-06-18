@@ -9,10 +9,9 @@ interface Env {
 }
 
 
-export function getEnv(): Env {
-    const env: Env = cleanEnv(process.env, {
-        PORT: num({ default: 3000 })
-    })
-    return env;
-}
+
+export const env: Env = cleanEnv(process.env, {
+    PORT: num({ default: 3000 })
+})
+
 
