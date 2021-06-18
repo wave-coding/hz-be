@@ -1,7 +1,6 @@
 import express, { Request, Response, NextFunction } from "express";
 
-import { env } from './utils';
-
+import { env,uncaughtExceptionHandler,unhandledRejectionHandler } from './utils';
 
 export const server = async () => {
 
@@ -10,7 +9,7 @@ export const server = async () => {
   const app = express();
 
   app.use(express.json());
-
+  
   // Error Handling Middleware Function
   app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
     res.status(500).json({ message: err.message });
@@ -19,4 +18,9 @@ export const server = async () => {
   app.listen(port, () => {
     console.log(`App is running on port ${port}`);
   });
+
+  process.on("uncaughtException", uncaughtExceptionHandler);
+  
+  process.on('unhandledRejection', unhandledRejectionHandler);
+  
 };
