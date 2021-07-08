@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node-dev --respawn --debounce 100  --transpile-only -r tsconfig-paths/register ./src/index.ts"
+    "start": "ts-node-dev --respawn --debounce 100  --transpile-only -r tsconfig-paths/register ./src/index.ts",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +24,9 @@
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
     "eslint": "^7.30.0",
-    "nodemon": "^2.0.7"
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "nodemon": "^2.0.7",
+    "prettier": "^2.3.2"
   }
 }
