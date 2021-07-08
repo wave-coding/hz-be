@@ -2,6 +2,8 @@ import { IUser } from '../types/user';
 import { model, Schema } from 'mongoose';
 
 const userSchema: Schema = new Schema({
+    
+    // just add simple db
 
     name: {
         type: String,
