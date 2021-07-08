@@ -1,3 +1,3 @@
-import { server } from "./app";
+import { server } from './app';
 
 server();

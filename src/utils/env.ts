@@ -1,17 +1,13 @@
-import { cleanEnv, num } from 'envalid'
+import { cleanEnv, num } from 'envalid';
 
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 
 dotenv.config();
 
 interface Env {
-    PORT: number;
+  PORT: number;
 }
 
-
-
 export const env: Env = cleanEnv(process.env, {
-    PORT: num({ default: 3000 })
-})
-
-
+  PORT: num({ default: 3000 }),
+});

@@ -1,2 +1,2 @@
-export * from './env'
-export * from './errorHandler'
+export * from './env';
+export * from './errorHandler';
