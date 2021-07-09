@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node-dev --respawn --debounce 100  --transpile-only -r tsconfig-paths/register ./src/index.ts",
-    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix"
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
+    "build": "rimraf dist && tsc --build tsconfig.json"
   },
   "author": "",
   "license": "ISC",
@@ -28,6 +29,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "nodemon": "^2.0.7",
-    "prettier": "^2.3.2"
+    "prettier": "^2.3.2",
+    "rimraf": "^2.7.1"
   }
 }
