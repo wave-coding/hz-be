@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
 
+import mongoose from 'mongoose';
+
 import {
   env,
   uncaughtExceptionHandler,
@@ -18,9 +20,20 @@ export const app = async (): Promise<void> => {
     res.status(500).json({ message: err.message });
   });
 
-  app.listen(port, () => {
-    console.log(`App is running on port ${port}`);
-  });
+  const uri: string = `mongodb://localhost:27017/wave_coding`;
+
+  const options = { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true, useCreateIndex: true };
+
+  mongoose.set('useFindAndModify', false);
+
+  mongoose.connect(uri, options).then(() =>
+    app.listen(port, () =>
+      console.log(`Server running on http://localhost:${port}`)
+    )
+  )
+    .catch((error) => {
+      throw error;
+    })
 
   process.on('uncaughtException', uncaughtExceptionHandler);
 
