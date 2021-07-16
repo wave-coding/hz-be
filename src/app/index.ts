@@ -9,7 +9,10 @@ import {
 } from '../utils';
 
 export const app = async (): Promise<void> => {
+
   const port = env.PORT;
+
+  const url = env.URL;
 
   const app = express();
 
@@ -20,15 +23,13 @@ export const app = async (): Promise<void> => {
     res.status(500).json({ message: err.message });
   });
 
-  const uri: string = `mongodb://localhost:27017/wave_coding`;
-
   const options = { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true, useCreateIndex: true };
 
   mongoose.set('useFindAndModify', false);
 
-  mongoose.connect(uri, options).then(() =>
+  mongoose.connect(url, options).then(() =>
     app.listen(port, () =>
-      console.log(`Server running on http://localhost:${port}`)
+      console.log(`Server running on http://localhost:${port} and database is ${url}`)
     )
   )
     .catch((error) => {
