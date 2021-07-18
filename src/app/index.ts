@@ -29,7 +29,7 @@ export const app = async (): Promise<void> => {
 
   mongoose.connect(url, options).then(() =>
     app.listen(port, () =>
-      console.log(`Server running on http://localhost:${port} and database is ${url}`)
+      console.log(`Server running on Port: ${port} and database is ${url}`)
     )
   )
     .catch((error) => {
