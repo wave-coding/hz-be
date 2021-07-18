@@ -1,5 +1,7 @@
 import express, { Request, Response } from 'express';
 
+import mongoose from 'mongoose';
+
 import {
   env,
   uncaughtExceptionHandler,
@@ -7,7 +9,10 @@ import {
 } from '@root/utils';
 
 export const app = async (): Promise<void> => {
+
   const port = env.PORT;
+
+  const url = env.URL;
 
   const app = express();
 
@@ -18,9 +23,18 @@ export const app = async (): Promise<void> => {
     res.status(500).json({ message: err.message });
   });
 
-  app.listen(port, () => {
-    console.log(`App is running on port ${port}`);
-  });
+  const options = { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true, useCreateIndex: true };
+
+  mongoose.set('useFindAndModify', false);
+
+  mongoose.connect(url, options).then(() =>
+    app.listen(port, () =>
+      console.log(`Server running on Port: ${port} and database is ${url}`)
+    )
+  )
+    .catch((error) => {
+      throw error;
+    })
 
   process.on('uncaughtException', uncaughtExceptionHandler);
 
