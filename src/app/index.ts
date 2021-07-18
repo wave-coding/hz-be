@@ -4,7 +4,7 @@ import {
   env,
   uncaughtExceptionHandler,
   unhandledRejectionHandler,
-} from '../utils';
+} from '@root/utils';
 
 export const app = async (): Promise<void> => {
   const port = env.PORT;
