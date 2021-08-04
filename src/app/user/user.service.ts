@@ -19,7 +19,7 @@ export class UserService {
   }
 
   // add User
-  async adduser(req: Request, res: Response) {
+  async addUser(req: Request, res: Response) {
     const newUser = new this.model({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -29,6 +29,34 @@ export class UserService {
     try {
       await this.model.create(newUser);
       res.status(201).json({ message: 'User create Successfully' })
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // Update User
+  async updateUser(req: Request, res: Response) {
+    const id: string = req.params.id;
+    const updUser = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      email: req.body.email,
+      password: req.body.password
+    };
+    try {
+      await this.model.findByIdAndUpdate(id, updUser);
+      res.status(200).json({ message: 'Update User Successfully' });
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // Delete User
+  async deleteUser(req: Request, res: Response) {
+    const id: string = req.params.id;
+    try {
+      await this.model.findByIdAndDelete(id);
+      res.status(200).json({ message: 'Delete User Successfully' });
     } catch (error) {
       throw error;
     }
