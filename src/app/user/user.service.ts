@@ -1,6 +1,7 @@
 import { Response, Request } from 'express';
 import { FilterQuery } from 'mongoose';
 import { IUser } from '../user/user.type';
+const bcrypt = require('bcrypt');
 
 import User from './user.model';
 
@@ -24,7 +25,7 @@ export class UserService {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password,
+      password: bcrypt.hashSync(req.body.password, 10)
     })
     try {
       await this.model.create(newUser);
@@ -44,6 +45,11 @@ export class UserService {
       password: req.body.password
     };
     try {
+      
+      if (!updUser) {
+        return res.status(401).json({ message: 'user with this is id does not exist' });
+      }
+
       await this.model.findByIdAndUpdate(id, updUser);
       res.status(200).json({ message: 'Update User Successfully' });
     } catch (error) {
