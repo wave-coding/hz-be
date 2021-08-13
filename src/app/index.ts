@@ -8,6 +8,8 @@ import {
   unhandledRejectionHandler,
 } from '@root/utils';
 
+import { options } from '../utils';
+
 export const app = async (): Promise<void> => {
 
   const port = env.PORT;
@@ -22,8 +24,6 @@ export const app = async (): Promise<void> => {
   app.use((err: Error, _req: Request, res: Response) => {
     res.status(500).json({ message: err.message });
   });
-
-  const options = { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: true, useCreateIndex: true };
 
   mongoose.set('useFindAndModify', false);
 
