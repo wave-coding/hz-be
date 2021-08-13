@@ -6,7 +6,7 @@ import {
   env,
   uncaughtExceptionHandler,
   unhandledRejectionHandler,
-} from '../utils';
+} from '@root/utils';
 
 import { options } from '../utils';
 
@@ -24,8 +24,6 @@ export const app = async (): Promise<void> => {
   app.use((err: Error, _req: Request, res: Response) => {
     res.status(500).json({ message: err.message });
   });
-
-
 
   mongoose.set('useFindAndModify', false);
 

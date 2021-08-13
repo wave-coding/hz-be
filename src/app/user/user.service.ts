@@ -3,6 +3,7 @@ import { FilterQuery } from 'mongoose';
 import { IUser } from '../user/user.type';
 const bcrypt = require('bcrypt');
 
+
 import User from './user.model';
 
 export class UserService {
