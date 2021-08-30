@@ -1,4 +1,4 @@
-import { Response, Request } from 'express';
+import { Response, Request, NextFunction } from 'express';
 import { FilterQuery } from 'mongoose';
 import { IUser } from '../user/user.type';
 const bcrypt = require('bcrypt');
@@ -20,7 +20,7 @@ export class UserService {
   }
 
   // add User
-  async addUser(req: Request, res: Response) {
+  async addUser(req: Request, res: Response, next: NextFunction) {
     const newUser = new this.model({
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -36,7 +36,7 @@ export class UserService {
   }
 
   // Update User
-  async updateUser(req: Request, res: Response) {
+  async updateUser(req: Request, res: Response, next: NextFunction) {
     const id: string = req.params.id;
     const updUser = {
       firstName: req.body.firstName,
@@ -58,7 +58,7 @@ export class UserService {
   }
 
   // Delete User
-  async deleteUser(req: Request, res: Response) {
+  async deleteUser(req: Request, res: Response, next: NextFunction) {
     const id: string = req.params.id;
     try {
       await this.model.findByIdAndDelete(id);
