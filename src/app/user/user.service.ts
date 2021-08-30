@@ -45,7 +45,7 @@ export class UserService {
       password: req.body.password
     };
     try {
-      
+
       if (!updUser) {
         return res.status(401).json({ message: 'user with this is id does not exist' });
       }
