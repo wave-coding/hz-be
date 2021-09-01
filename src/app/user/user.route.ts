@@ -4,12 +4,15 @@ import { validators } from './user.validator';
 
 const userServices = new UserService();
 
-export const router = Router();
+const router = Router();
 
-router.get('/api/user', userServices.getUser);
+router.get('/', userServices.getUser);
 
-router.post('/api/user', validators, userServices.addUser);
+router.post('/', validators, userServices.addUser);
 
-router.put('/api/user/:id', userServices.updateUser);
+router.put('/:id', userServices.updateUser);
 
-router.delete('/api/user/:id', userServices.deleteUser);
+router.delete('/:id', userServices.deleteUser);
+
+
+module.exports = router;

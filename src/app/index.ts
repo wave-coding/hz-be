@@ -10,7 +10,9 @@ import {
 
 import { options } from '../utils';
 
-import { router } from './user/user.route'
+const userRouter = require('./user/user.route');
+
+const homeRouter = require('./routes');
 
 export const app = async (): Promise<void> => {
 
@@ -24,12 +26,17 @@ export const app = async (): Promise<void> => {
 
   app.use(express.urlencoded({ extended: true }));
 
+
+  app.use('/api/user', userRouter);
+
+  app.use('/', homeRouter);
+
+
+
   // Error Handling Middleware Function
   app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     res.status(500).json({ message: err.message });
   });
-
-  app.use('/api/user', router);
 
 
 
