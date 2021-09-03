@@ -26,9 +26,9 @@ export const app = async (): Promise<void> => {
 
   app.use(express.urlencoded({ extended: true }));
 
-
+  // User Router Api
   app.use('/api/user', userRouter);
-
+  // Home Router
   app.use('/', homeRouter);
 
 

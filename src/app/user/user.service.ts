@@ -1,7 +1,7 @@
 import { Response, Request, NextFunction } from 'express';
-import { FilterQuery } from 'mongoose';
-import { IUser } from '../user/user.type';
-const bcrypt = require('bcrypt');
+// import { FilterQuery } from 'mongoose';
+// import { IUser } from '../user/user.type';
+import bcrypt from 'bcrypt';
 
 import User from './user.model';
 
@@ -9,7 +9,6 @@ export class UserService {
 
   // private model = User;
 
-  // get User
   // async getUser(req: Request, res: Response, filter: FilterQuery<IUser>): Promise<void> {
   //   try {
   //     const user: IUser | null = await User.findOne(filter);
@@ -19,11 +18,13 @@ export class UserService {
   //   }
   // }
 
-  // this create api is my way other way I not understood so I decided this way
-  // if im wrong or somethings tell me finally my way work good
-  async getUser(req: Request, res: Response,next:NextFunction) {
+  // this create api is my way other way I not sure about it so I decided this way
+  // if im wrong or somethings tell me ,finally my way work fine
+
+  // get User
+  async getUser(req: Request, res: Response, next: NextFunction) {
     const allUsers = await User.find();
-    res.status(200).json({ users: allUsers })
+    res.status(200).json({ users: allUsers });
   }
 
   // add User
@@ -32,13 +33,13 @@ export class UserService {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password
+      password: await bcrypt.hashSync(req.body.password, 10)
     })
     try {
       await User.create(newUser);
-      res.status(201).json({ message: 'User create Successfully' })
+      res.status(201).json({ message: 'User create Successfully...' })
     } catch (error) {
-      res.status(404).send({ message: "NICE TRY!" })
+      res.status(404).send({ message: "Error Try Again!..." });
       console.log(error);
       throw error;
     }
@@ -51,7 +52,7 @@ export class UserService {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       email: req.body.email,
-      password: req.body.password
+      password: await bcrypt.hashSync(req.body.password, 10) as any
     };
     try {
 
