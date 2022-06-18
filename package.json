@@ -6,6 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node-dev --respawn --debounce 100  --transpile-only -r tsconfig-paths/register ./src/index.ts",
+    "prod": "NODE_ENV=production node -r ts-node/register/transpile-only -r tsconfig-paths/register ./dist/index.js",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "build": "rimraf dist && tsc --build tsconfig.json"
   },
